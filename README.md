@@ -1,4 +1,4 @@
-# MongoDB-ARM64
+# MongoDB-ARMv8
 MongoDB binaries build on (and for) Raspberry Pi 4B 4GB.
 
 Includes **Mongo Database Tools** (mongodump, mongosretore, mongoimport...),
