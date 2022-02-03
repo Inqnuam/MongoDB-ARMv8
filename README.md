@@ -1,13 +1,15 @@
-# MongoDB-ARM64
+# MongoDB - ARM64 (v8) Debian / Raspberry Pi OS (64-bit)
+
 MongoDB for Raspberry Pi OS 64-bit.
 
-Includes **Mongo Database Tools** (mongodump, mongosretore, mongoimport...),
+Includes **Mongo Database Tools** (mongosh, mongodump, mongosretore, mongoimport...),
 and configuration files for Raspberry Pi OS 64-bit.
 
 ## Installation
+
 1. Download Release archive and unzip.
 
-`cd ~ && wget -q -O MongoARM64.zip https://github.com/Inqnuam/MongoDB-ARMv8/releases/download/v5.0.0/MongoDBv5.0.0_ARM64.zip && unzip MongoARM64.zip && rm MongoARM64.zip`
+`cd ~ && wget -q -O MongoARM64.zip https://github.com/Inqnuam/MongoDB-ARMv8/releases/download/v5.0.6/MongoDBv5.0.6_ARM64.zip && unzip MongoARM64.zip && rm MongoARM64.zip`
 
 2. Stop MongoDB Server if a previous version is running.
 
@@ -24,6 +26,7 @@ Next steps are required if this is your first MongoDB installation on your Pi.
 ## Fresh new installation
 
 5. Create mongodb user.
+
 ```bash
 sudo useradd -M mongodb
 sudo groupadd mongodb
@@ -33,25 +36,31 @@ sudo su
 exit
 grep mongodb /etc/group
 ```
+
 6. Create required directories & make them own by previously created "mongodb" user.
+
 ```bash
 sudo mkdir -p /var/lib/mongodb
 sudo mkdir -p /var/log/mongodb
 sudo chown mongodb:mongodb /var/lib/mongodb
 sudo chown mongodb:mongodb /var/log/mongodb
 ```
+
 7. Settings to start MongoDB server at system startup, launch mongo and check the status.
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable mongod
 sudo systemctl start mongod
 sudo systemctl status mongod
 ```
+
 8. Finish.
 
 Now restart your system `sudo reboot now`, once back enter into MongoShell `mongo` or into brand new `mongosh` which is recommanded.
 
 If you see MongoDB server's version then try to create an admin user for the database.
+
 ```bash
 use admin
 
@@ -60,9 +69,10 @@ db.createUser( { user: "admin",
             roles: [ "userAdminAnyDatabase",
                      "dbAdminAnyDatabase",
                      "readWriteAnyDatabase"] } )
-                     
+
 exit
 ```
+
 Remove installation files
 
 `cd ~ && rm -rf MongoARM64`
